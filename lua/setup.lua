@@ -33,8 +33,9 @@ require('lazy').setup({
     require('plugins.fugitive'),                -- [[ GitHub ]] :: Git Commands
 
     require('plugins.lsp-config'),              -- [[ LSP ]] :: Language Server Protocol
-    require('plugins.tree-sitter')              -- [[ LSP ]] :: LSP Utility
-})
+    require('plugins.tree-sitter'),             -- [[ LSP ]] :: LSP Utility
+    require('plugins.vim-javascript')           -- [[ LSP ]] :: JS LSP and Formatting
+ })
 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
