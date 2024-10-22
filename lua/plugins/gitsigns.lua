@@ -11,6 +11,6 @@ return {
     },
 
     config = function ()
-        vim.keymap.set('n', '<leader>gph', '<cmd>Gitsigns preview_hunk', {desc = 'Gitsigns: [G]it [H]unk [P]review'})
+        require('gitsigns').setup()
     end
 }

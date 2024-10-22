@@ -88,27 +88,6 @@ vim.defer_fn(function()
   }
 end, 0)
 
-local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  nmap('<leader>ld', require('telescope.builtin').lsp_definitions, '[D]efinition')
-  nmap('<leader>lr', require('telescope.builtin').lsp_references, '[R]eferences')
-  nmap('<leader>li', require('telescope.builtin').lsp_implementations, '[I]mplementation')
-
-  nmap('<leader>lh', vim.lsp.buf.hover, '[H]over Documentation')
-  nmap('<leader>ls', vim.lsp.buf.signature_help, '[S]ignature Documentation')
-
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
-
 
 require('mason').setup()
 require('mason-lspconfig').setup()
@@ -137,7 +116,6 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
